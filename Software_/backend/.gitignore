@@ -1,0 +1,15 @@
+# env secrets
+.env
+.env.local
+
+# node stuff
+node_modules/
+dist/
+build/
+
+# logs
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db

@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/* boxes */
+.box {
+  border: 2px solid #000;
+  border-radius: 10px;
+  background: #f8f9fa;
+  padding: 12px;
+}
+
+/* dark mode */
+.dark .box {
+  border-color: #374151;
+  background: #1f2937;
+  color: #e5e7eb;
+}
+
+/* values */
+.value {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* final result */
+.final-result {
+  margin-top: 30px;
+  padding: 15px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background: #e3f2fd;
+}
+
+/* dark mode */
+.dark .final-result {
+  border-color: #374151;
+  background: #111827;
+  color: #e5e7eb;
+}
+
+.result {
+  font-size: 26px;
+  font-weight: 700;
+}
