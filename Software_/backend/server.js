@@ -6,8 +6,6 @@ import cors from "cors";
 import http from "http";
 import { GoogleGenAI } from "@google/genai";
 
-
-
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -15,6 +13,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const ai = new GoogleGenAI({
+    apiKey: process.env.GEMINI_API_KEY,
+});
 
 const PORT = 5000;
 
@@ -67,36 +68,35 @@ wss.on("connection", (ws, req) => {
   });
 });
 
+//ai
+console.log("Gemini key:", process.env.GEMINI_API_KEY);
+async function correctWord(word) {
+  const response = await ai.models.generateContent({
+    model: "gemini-3-flash-preview",
+    contents: `Correct this possibly misspelled word in the sentence(basic words like hello how are you, what's your name this type basic so do efficiently) so. Return the corrected sentence with grammer. No explanation.::\n${word}`,
+  });
+  console.log(response.text);
 
-/// chat support
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY
-});
-console.log(process.env.GEMINI_API_KEY);
-app.post("/chat", async (req, res) => {
+  return response.text.trim();
+}
+//ai
+app.post("/correct", async (req, res) => {
+  const { word } = req.body;
+
+  if (!word) {
+    return res.status(400).json({ error: "No word provided" });
+  }
+
   try {
-    const { messages } = req.body;
-
-    // convert chat history → plain text prompt
-    const prompt = messages
-      .map(m => `${m.role}: ${m.content}`)
-      .join("\n");
-
-    const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash", // stable + cheap + fast
-      contents: prompt
-    });
-
-    res.json({
-      role: "assistant",
-      content: response.text
-    });
-
+    const corrected = await correctWord(word);
+    res.json({ corrected });
   } catch (err) {
-    console.error("Gemini error:", err);
-    res.status(500).json({ error: err.message });
+    console.error("AI error:", err);
+    res.status(500).json({ error: "AI failed" });
   }
 });
+
+
 
 
 server.listen(PORT, () => {

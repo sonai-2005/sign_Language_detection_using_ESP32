@@ -7,8 +7,8 @@ const membersLi = [
     { name: "Saptarshi", bio: "Here’s your panda. Don’t wake me up.", img:saptarshi },
     { name: "Monu", bio: "topper i.e. (Dube ji ka ladka)", img: monu},
     { name: "Sayan", bio: "ultra talented guy", img: sayan },
-    { name: "Ranita", bio: "......", img: ranita },
-    { name: "Sameer", bio: "..........", img: sameer }
+    { name: "Ranita", bio: "ultra busy girl", img: ranita },
+    { name: "Sameer", bio: "curious boy ", img: sameer }
   ];
 export default function MemberF() {
   return (

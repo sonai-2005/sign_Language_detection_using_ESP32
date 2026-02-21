@@ -23,7 +23,7 @@ const int N = 5;
 int pins[N] = {32, 33, 34, 35, 36};
 
 // your stored baseline cutoffs
-int cutoff[N] = {2350, 2450, 2500, 2480, 2460};
+int cutoff[N] = {2500, 2350, 2200, 2390, 4096};
 
 char lastPattern[6] = "xxxxx";  // track last sent pattern
 

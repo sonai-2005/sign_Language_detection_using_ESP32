@@ -5,8 +5,6 @@ import Nav from "./components/Nav";
 import Result from "./components/Result";
 import Footer from "./components/Footer";
 import Settings from "./pages/Settings";
-import ChatPage from "./pages/ChatPage";
-
 import Member from "./pages/Member";
 import About from "./pages/About";
 const WS_URL = "ws://10.94.95.92:5000/";
@@ -57,7 +55,6 @@ function App() {
         {/* other pages */}
         <Route path="/member" element={<Member />} />
         <Route path="/about" element={<About />} />
-        <Route path="/chat" element={<ChatPage />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>
 
