@@ -6,8 +6,10 @@ import cors from "cors";
 import http from "http";
 import { GoogleGenAI } from "@google/genai";
 
-import dotenv from "dotenv";
 
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import { getAllData } from "./dataMongo.js";
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -16,15 +18,15 @@ app.use(express.json());
 const ai = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY,
 });
-
+//database
+mongoose.connect(process.env.MONGODB_KEY)
+    .then(()=>console.log("yeah mongo listening !"))
+    .catch(()=>console.log("shi$$y error as usual "));
 const PORT = 5000;
 
-// Create HTTP server manually
+//websocket
 const server = http.createServer(app);
-
-// Attach WebSocket to the same server
 const wss = new WebSocketServer({ server });
-
 wss.on("connection", (ws, req) => {
   const clientIP = req.socket.remoteAddress;
   console.log("Client connected from:", clientIP);
@@ -95,7 +97,17 @@ app.post("/correct", async (req, res) => {
     res.status(500).json({ error: "AI failed" });
   }
 });
-
+app.get("/data",async(req,res)=>{
+    try{
+        const data = await getAllData();
+        res.json(data);
+        console.log(data);
+    }
+    catch(err){
+        res.status(500).json({error:err.message})
+        console.log(err)
+        }
+})
 
 
 

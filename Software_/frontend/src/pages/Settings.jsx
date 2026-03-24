@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { LanguageContext } from "../Context/LanguageContext";
 import languages from "../language";
+import Edit from "../fingerValue/edit";
 
 export default function Settings() {
   const { lang, changeLanguage } = useContext(LanguageContext);
@@ -16,6 +17,7 @@ export default function Settings() {
         <option value="hi">Hindi</option>
         <option value="bn">Bengali</option>
       </select>
+      <Edit/>
     </div>
   );
 }

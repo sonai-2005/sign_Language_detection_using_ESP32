@@ -7,9 +7,9 @@ import Footer from "./components/Footer";
 import Settings from "./pages/Settings";
 import Member from "./pages/Member";
 import About from "./pages/About";
-const WS_URL = "ws://10.94.95.92:5000/";
+const WS_URL = "ws://10.94.95.92:5000/";//hotspot er 
 
-//const WS_URL = "ws://192.168.0.108:5000/";
+//const WS_URL = "ws://192.168.0.108:5000/"; mess er wifire 
 function Home() {
   const [fingers, setFingers] = useState({
     thumb: 0,

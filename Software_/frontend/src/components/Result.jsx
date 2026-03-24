@@ -8,7 +8,7 @@ import languages from "../language";
 
 
 export default function Result({ fingers }) {
-    const [history, setHistory] = useState([""]);
+    const [history, setHistory] = useState(["I NEADD TWATEER TO CLLAAN"]);
     const [corrected, setCorrected] = useState("");
 
     const { lang } = useContext(LanguageContext);
@@ -33,7 +33,7 @@ export default function Result({ fingers }) {
 
     const sendToBackend = async (word) => {
         try {
-            const res = await fetch("http://10.94.95.92:5000/correct", {
+            const res = await fetch("http://10.130.188.92:5000/correct", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ word })
